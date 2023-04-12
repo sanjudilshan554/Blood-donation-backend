@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\usercontroller;
+use App\Http\Controllers\authcontroller;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,3 +23,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::post('/post',[PostController::class,'store']);
 Route::post('/user',[usercontroller::class,'store']);
+Route::post('/userAuth',[authcontroller::class,'store']);
