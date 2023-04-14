@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\usercontroller;
 use App\Http\Controllers\authcontroller;
+use App\Http\Controllers\bloodRequestcontroller;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,3 +25,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::post('/post',[PostController::class,'store']);
 Route::post('/user',[usercontroller::class,'store']);
 Route::post('/userAuth',[authcontroller::class,'store']);
+Route::post('/bloodRequest',[bloodRequest::class,'store']);
+Route::get('/user_for_blood_request',[usercontroller::class,'bloodrequest']);
+Route::post('/blood_request',[bloodRequestcontroller::class,'bloodrequestsave']);

@@ -53,4 +53,15 @@ class usercontroller extends Controller
 
         return response()->json(['data'=>$data,'message'=>'recode saved','status'=>'200']);
     }
+
+    public function bloodrequest(){
+        $data=User::get();
+        if($data){
+            return response()->json(['user_data'=>$data,'status'=>'200']);
+        }
+        else{
+            return response()->json(['faild'=>'no data']);
+        }
+    }
+    
 }
