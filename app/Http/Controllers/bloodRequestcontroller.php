@@ -45,7 +45,7 @@ class bloodRequestcontroller extends Controller
         
         //select * from users u inner join bloodrequests b on u.id.=b.Requester_id where (Request_get_id==Request_getter_id)
 
-        $requesterdetail=User::select('users.bloodtype','users.address','users.contactno','users.age','users.gender','blood_requests.Requester_name','blood_requests.Requester_mail','blood_requests.created_at')
+        $requesterdetail=User::select('users.bloodtype','users.address','users.contactno','users.age','users.gender','blood_requests.Requester_name','blood_requests.Requester_mail','blood_requests.created_at','blood_requests.Requester_id','blood_requests.id')
                         ->join('blood_requests','users.id','=','blood_requests.Requester_id')
                         ->where('blood_requests.Request_get_id',$Request_getter_id)
                         ->get();

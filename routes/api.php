@@ -6,6 +6,7 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\usercontroller;
 use App\Http\Controllers\authcontroller;
 use App\Http\Controllers\bloodRequestcontroller;
+use App\Http\Controllers\blood_request_acceptedcontroller;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,3 +30,4 @@ Route::post('/bloodRequest',[bloodRequest::class,'store']);
 Route::get('/user_for_blood_request',[usercontroller::class,'bloodrequest']);
 Route::post('/blood_request',[bloodRequestcontroller::class,'bloodrequestsave']);
 Route::post('/requestFromOthers',[bloodRequestcontroller::class,'requestFromOthers']);
+Route::post('/requestAccepted',[blood_request_acceptedcontroller::class,'requestAccepted']);
