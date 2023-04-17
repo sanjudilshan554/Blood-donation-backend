@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\blood_request_accepted;
 use App\Models\bloodRequest;
+use App\Models\User;
         
 
 use Illuminate\Http\Request;
@@ -68,7 +69,36 @@ class blood_request_acceptedcontroller extends Controller
         
 
         // return $data;
-     return response()->json(['data'=>$data,'status'=>'200','message'=>'data saved']);
+     return response()->json(['data'=>$data,'status'=>'200','message'=>'Confirm Successfully']);
         
+    }
+
+    public function accepted(Request $request){
+
+        $currentLocalhostId=$request->currentLocalId;
+        
+        $details=User::select('users.email','blood_request_accepteds.Accepter_name','blood_request_accepteds.Accepter_blood_type','blood_request_accepteds.Accepter_address','blood_request_accepteds.Accepter_contact','blood_request_accepteds.Accepter_age','blood_request_accepteds.Accepter_gender','blood_request_accepteds.created_at')
+        ->join('blood_request_accepteds','users.id','=','blood_request_accepteds.Accepter_id')
+        ->where('blood_request_accepteds.Requester_id',$currentLocalhostId)
+        ->get();
+       
+       
+
+        
+        return response()->json(['data'=>$details,'status'=>'200','message'=>'data getting successfully']);
+        
+    }
+
+    public function acceptedforhome(Request $request){
+      
+        $currentLocalhostId=$request->localid;
+
+         $count=blood_request_accepted::where('blood_request_accepteds.Requester_id',$currentLocalhostId)
+        ->get()->count();
+
+        $count2=bloodRequest::where('blood_requests.Request_get_id',$currentLocalhostId)
+        ->get()->count();
+        
+        return response()->json(['data'=>$count,'status'=>'200','data2'=>$count2]);
     }
 }
