@@ -66,8 +66,11 @@ class blood_request_acceptedcontroller extends Controller
         'Accepter_gender'=>$validate_data['Accepter_gender'],
         ]);
         
+      
+        //Deleting entier row  //You can see those deleted things in acceptecd part
+        // bloodRequest::where('id',$Request_id)
+        // ->where('Requester_id',$Requester_id)->delete();
         
-
         // return $data;
      return response()->json(['data'=>$data,'status'=>'200','message'=>'Confirm Successfully']);
         
@@ -75,15 +78,14 @@ class blood_request_acceptedcontroller extends Controller
 
     public function accepted(Request $request){
 
+        
         $currentLocalhostId=$request->currentLocalId;
         
         $details=User::select('users.email','blood_request_accepteds.Accepter_name','blood_request_accepteds.Accepter_blood_type','blood_request_accepteds.Accepter_address','blood_request_accepteds.Accepter_contact','blood_request_accepteds.Accepter_age','blood_request_accepteds.Accepter_gender','blood_request_accepteds.created_at')
         ->join('blood_request_accepteds','users.id','=','blood_request_accepteds.Accepter_id')
         ->where('blood_request_accepteds.Requester_id',$currentLocalhostId)
         ->get();
-       
-       
-
+    
         
         return response()->json(['data'=>$details,'status'=>'200','message'=>'data getting successfully']);
         
@@ -93,12 +95,18 @@ class blood_request_acceptedcontroller extends Controller
       
         $currentLocalhostId=$request->localid;
 
-         $count=blood_request_accepted::where('blood_request_accepteds.Requester_id',$currentLocalhostId)
+        $count=blood_request_accepted::where('blood_request_accepteds.Requester_id',$currentLocalhostId)
         ->get()->count();
 
         $count2=bloodRequest::where('blood_requests.Request_get_id',$currentLocalhostId)
         ->get()->count();
+
+        $count3=bloodRequest::where('blood_requests.Requester_id',$currentLocalhostId)
+        ->get()->count();
         
-        return response()->json(['data'=>$count,'status'=>'200','data2'=>$count2]);
+        
+        return response()->json(['data'=>$count,'status'=>'200','data2'=>$count2,'data3'=>$count3]);
     }
+
+    
 }

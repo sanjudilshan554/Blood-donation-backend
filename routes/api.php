@@ -8,6 +8,7 @@ use App\Http\Controllers\authcontroller;
 use App\Http\Controllers\bloodRequestcontroller;
 use App\Http\Controllers\blood_request_acceptedcontroller;
 
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -33,3 +34,4 @@ Route::post('/requestFromOthers',[bloodRequestcontroller::class,'requestFromOthe
 Route::post('/requestAccepted',[blood_request_acceptedcontroller::class,'requestAccepted']);
 Route::post('/accepted',[blood_request_acceptedcontroller::class,'accepted']);
 Route::post('/acceptedforhome',[blood_request_acceptedcontroller::class,'acceptedforhome']);
+Route::get('/viewpost',[PostController::class,'view']);

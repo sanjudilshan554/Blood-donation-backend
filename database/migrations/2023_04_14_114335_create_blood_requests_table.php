@@ -16,10 +16,10 @@ class CreateBloodRequestsTable extends Migration
         Schema::create('blood_requests', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('Requester_id')->nullable();
-            $table->foreign('Requester_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('Requester_id')->references('id')->on('users');
 
             $table->unsignedBigInteger('Request_get_id')->nullable();
-            $table->foreign('Request_get_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('Request_get_id')->references('id')->on('users');
 
             $table->String('Requester_name');
             $table->String('Requester_mail');
